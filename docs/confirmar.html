@@ -74,26 +74,16 @@
           let chapaReconhecida = false;
 
           data.forEach(async (item) => {
+            console.log(data);
+            const imagem = item.foto;
+            const imgDiv = document.getElementById("foto_chapa");
             if (numeroChapaURL === item.chapa) {
               chapaReconhecida = true;
               const nome = item.nome;
               const texto = `<h3>Voto para: ${nome}</h3>`;
               document.querySelector("#numero_chapa").innerHTML += texto;
 
-              const imgNome = nome.replace(/\s+/g, "_") + ".jpg";
-              const imgPath = `imagem_candidatos/${imgNome}`;
-
-              try {
-                const response = await fetch(imgPath);
-                if (response.ok) {
-                  document.getElementById("foto_chapa").src = imgPath;
-                } else {
-                  throw new Error("Imagem não encontrada");
-                }
-              } catch (error) {
-                console.error(error);
-                document.getElementById("foto_chapa").style.display = "none";
-              }
+              imgDiv.setAttribute("src", "data:image/jpg;base64," + imagem);
             }
           });
 
