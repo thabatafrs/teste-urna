@@ -72,27 +72,27 @@
         }
       });
 
-      function verificarUrnaLiberada() {
-        fetch(`http://localhost:8080/eleitor/verificar/${ra}`, {
-          method: "POST",
-        })
-          .then((response) => response.json())
+      // function verificarUrnaLiberada() {
+      //   fetch(`http://localhost:8080/eleitor/verificar/${ra}`, {
+      //     method: "POST",
+      //   })
+      //     .then((response) => response.json())
 
-          .then((data) => {
-            let urnaLiberada = data;
-            console.log(urnaLiberada);
-            setTimeout(verificarUrnaLiberada, 2000);
+      //     .then((data) => {
+      //       let urnaLiberada = data;
+      //       console.log(urnaLiberada);
+      //       setTimeout(verificarUrnaLiberada, 2000);
 
-            if (urnaLiberada === false) {
-              window.location.href = "index.html";
-            }
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      }
+      //       if (urnaLiberada === false) {
+      //         window.location.href = "index.html";
+      //       }
+      //     })
+      //     .catch((err) => {
+      //       console.error(err);
+      //     });
+      // }
 
-      verificarUrnaLiberada();
+      // verificarUrnaLiberada();
     </script>
   </body>
 </html>
