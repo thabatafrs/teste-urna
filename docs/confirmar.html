@@ -151,40 +151,27 @@
         location.href = "index.html";
       }
 
-      // function verificarUrnaLiberada() {
-      //   fetch("http://localhost:8080/liberacao_urna?isUrnaLiberada=true", {
-      //     method: "GET",
-      //   })
-      //     .then((response) => response.json())
+      function verificarUrnaLiberada() {
+        fetch(`http://localhost:8080/eleitor/verificar/${ra}`, {
+          method: "POST",
+        })
+          .then((response) => response.json())
 
-      //     .then((data) => {
-      //       let urnaLiberada = data;
-      //       console.log(urnaLiberada)
+          .then((data) => {
+            let urnaLiberada = data;
+            console.log(urnaLiberada);
+            setTimeout(verificarUrnaLiberada, 2000);
 
-      //     function exibirMensagem(mensagem) {
-      //       document.getElementById("mensagem").innerHTML = mensagem;
-      //     }
+            if (urnaLiberada === false) {
+              window.location.href = "index.html";
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }
 
-      //     document.getElementById("confirma").focus();
-
-      //       if (urnaLiberada === false) {
-      //         console.log("urna bloqueada");
-      //         exibirMensagem("Urna foi bloqueada. Sem autorização para voto!");
-      //         document.getElementById("foto_chapa").style.display = "none";
-      //         document.getElementById("numero_chapa").style.display = "none";
-      //         document.getElementById("confirma").style.display = "none";
-      //         document.getElementById("cancela").innerHTML =
-      //         "Voltar para votação";
-      //         document.getElementById("cancela").style.width =
-      //         "100%";
-      //       }
-      //     })
-      //     .catch((err) => {
-      //       console.error(err);
-      //     });
-      // }
-
-      // verificarUrnaLiberada();
+      verificarUrnaLiberada();
     </script>
   </body>
 </html>
